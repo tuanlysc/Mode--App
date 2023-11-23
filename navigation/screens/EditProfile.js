@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TextInput } from "react-native";
+import { View, Text, ScrollView, Image, TextInput, Modal } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker'
 import DatePicker,{ getFormatedDate } from "react-native-modern-datepicker";
 import COLORS from '../../assets/consts/colors'
 import imagesDataURL from '../../assets/consts/model'
+import { StatusBar } from "expo-status-bar";
 
 const EditProfile = ({navigation}) =>{
 
@@ -22,7 +23,7 @@ const EditProfile = ({navigation}) =>{
         "YYYY/MM/DD"
     )
     const [selectedStarDate,setSelectedStartDate]=useState("01/01/2000");
-    const [startedDate,setStartedDate]=useState("12/12/2023");
+    const [startedDate,setStartedDate]=useState("01/01/1900");
     const handleChangeStartDate =(propDate)=>{
         setStartedDate(propDate);
     }
@@ -40,6 +41,56 @@ const EditProfile = ({navigation}) =>{
         if(!(await result).canceled){
             setSelectedImage((await result).assets[0].uri)
         }
+    }
+
+    function renderDatePicker(){
+        return(
+            <Modal
+            animationType="slide"
+            transparent={true}
+            visible={openStartDatePicker}
+        >
+            <View style={{
+                margin:20,
+                backgroundColor:COLORS.primary,
+                alignItems:'center',
+                justifyContent:'center',
+                borderRadius:20,
+                padding:35,
+                width:'90%',
+                shadowColor:'#000',
+                shadowOffset:{
+                    width:0,
+                    height:2
+                },
+                shadowOpacity:0.25,
+                shadowRadius:4,
+                elevation:5
+            }}>
+                <DatePicker 
+                    mode="calendar"
+                    minimumDate={startDate}
+                    selected={startedDate}
+                    onDateChange={handleChangeStartDate}
+                    onSelectedChange={(date)=>setSelectedStartDate(date)}
+                    options={{
+                        backgroundColor:COLORS.primary,
+                        textHeaderColor: "#469ab6",
+                        textDefaultColor: COLORS.white,
+                        selectedTextColor: COLORS.white,
+                        mainColor: "#469ab6",
+                        textSecondaryColor:COLORS.white,
+                        borderColor: "rgba(122,146,165,0.1)"
+                    }}
+                />
+                <TouchableOpacity
+                    onPress={handleOnChangeStartDate}
+                >
+                    <Text style={{color:COLORS.white}}>Close</Text>
+                </TouchableOpacity>
+            </View>
+        </Modal>
+        )
     }
     return(
         <SafeAreaView style={{
@@ -81,7 +132,7 @@ const EditProfile = ({navigation}) =>{
                                 width: 170,
                                 borderRadius:85,
                                 borderWidth:2,
-                                borderColor: COLORS.primary
+                                borderColor: COLORS.green
                             }}
                         />
                         <View style={{
@@ -98,7 +149,7 @@ const EditProfile = ({navigation}) =>{
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View>
+                <View style={style.setProfile}>
                     {/* Tên */}
                     <View style={{
                         flexDirection:"column",
@@ -108,7 +159,7 @@ const EditProfile = ({navigation}) =>{
                         <View style={{
                             height:44,
                             width:'100%',
-                            borderColor: COLORS.secondary,
+                            borderColor: COLORS.secondaryGray,
                             borderWidth:1,
                             borderRadius:4,
                             marginVertical:6,
@@ -131,7 +182,7 @@ const EditProfile = ({navigation}) =>{
                         <View style={{
                             height:44,
                             width:'100%',
-                            borderColor: COLORS.secondary,
+                            borderColor: COLORS.secondaryGray,
                             borderWidth:1,
                             borderRadius:4,
                             marginVertical:6,
@@ -154,7 +205,7 @@ const EditProfile = ({navigation}) =>{
                         <View style={{
                             height:44,
                             width:'100%',
-                            borderColor: COLORS.secondary,
+                            borderColor: COLORS.secondaryGray,
                             borderWidth:1,
                             borderRadius:4,
                             marginVertical:6,
@@ -180,7 +231,7 @@ const EditProfile = ({navigation}) =>{
                          style={{
                             height:44,
                             width:'100%',
-                            borderColor: COLORS.secondary,
+                            borderColor: COLORS.secondaryGray,
                             borderWidth:1,
                             borderRadius:4,
                             marginVertical:6,
@@ -199,7 +250,7 @@ const EditProfile = ({navigation}) =>{
                         <View style={{
                             height:44,
                             width:'100%',
-                            borderColor: COLORS.secondary,
+                            borderColor: COLORS.secondaryGray,
                             borderWidth:1,
                             borderRadius:4,
                             marginVertical:6,
@@ -213,8 +264,20 @@ const EditProfile = ({navigation}) =>{
                             />
                         </View>
                     </View>
+                    <TouchableOpacity style={{
+                    backgroundColor:COLORS.primary,
+                    height:44,
+                    borderRadius:6,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>
+                    <Text style={{
+                        color:COLORS.white
+                    }}>Lưu lại</Text>
+                </TouchableOpacity>
                 </View>
-            </ScrollView>
+                {renderDatePicker()}
+            </ScrollView> 
         </SafeAreaView>
     );
 }
@@ -225,11 +288,15 @@ style = StyleSheet.create({
     header:{
         marginHorizontal: 12,
         flexDirection:'row',
-        justifyContent:'center'
+        justifyContent:'center',
+        marginTop:30
     },
     navHeader:{
         position:'absolute',
         left:0
+    },
+    setProfile:{
+        marginHorizontal:22
     }
 })
 

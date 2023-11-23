@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import COLORS from "../../assets/consts/colors"
 import model from "../../assets/consts/model"
 import { FontAwesome, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { StatusBar } from "expo-status-bar";
 const width = Dimensions.get("screen").width/2-30;
 export default function HomeScreen({navigation}){
     const categories = ['Liên quan','Mới nhất','Bán chạy','Giá tốt'];
@@ -44,6 +45,7 @@ export default function HomeScreen({navigation}){
             backgroundColor: COLORS.white,
         }}>
             <View style={style.header}>
+                <StatusBar backgroundColor={COLORS.white} style={{color:COLORS.black}}></StatusBar>
                 <View>
                     <Text style={{fontSize: 25, fontWeight: 'bold'}}>Welcome to</Text>
                     <Text style={{fontSize: 38, fontWeight: 'bold', color:COLORS.green}}>Model Shop</Text>
@@ -77,7 +79,7 @@ export default function HomeScreen({navigation}){
 
 const style = StyleSheet.create({
     header:{
-        marginTop: 20,
+        marginTop: 50,
         flexDirection: 'row',
         justifyContent: 'space-between',
         
@@ -110,6 +112,7 @@ const style = StyleSheet.create({
         marginTop: 30,
         marginBottom: 20,
         justifyContent: 'space-between',
+        
     },
     categoryText:{
         color:"grey",

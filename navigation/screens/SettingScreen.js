@@ -4,11 +4,11 @@ import COLORS from "../../assets/consts/colors";
 import { MaterialIcons } from '@expo/vector-icons';
 import { ScrollView } from "react-native";
 import EditProfile from "./EditProfile";
+import { useNavigation } from "@react-navigation/native";
 
 const SettingScreen =({navigation}) =>{
-
     const navigateToEditProfile =()=>{
-        navigation.navigate("EditProfile");
+        navigation.navigate('EditProfile');
     };
     const navigateToSecurity=()=>{
         console.log("Security function")
@@ -158,7 +158,8 @@ const style = StyleSheet.create({
     header:{
         marginHorizontal: 12,
         flexDirection:'row',
-        justifyContent:'center'
+        justifyContent:'center',
+        marginTop:30
     },
     navHeader:{
         position:'absolute',

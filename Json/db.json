@@ -1,0 +1,72 @@
+{
+    "model":[
+        {
+            "id": 1,
+            "name": "Luffy Gear5",
+            "source": "",
+            "price": 300000,
+            "like": "true"
+        },
+        {
+            "id": 2,
+            "name": "Naruto Hiền Nhân",
+            "source": "",
+            "price": 400000,
+            "like": "false"
+        },
+        {
+            "id": 3,
+            "name": "Rengoku",
+            "source": "",
+            "price": 500000,
+            "like": "false"
+        },
+        {
+            "id": 4,
+            "name": "SonGoku SuperSaiyan",
+            "source": "",
+            "price": 600000,
+            "like": "'false'"
+        },
+        {
+            "id": 5,
+            "name": "Itadori Yuji",
+            "source": "",
+            "price": 600000,
+            "like": "false"
+        },
+        {
+            "id": 6,
+            "name": "Tomioka",
+            "source": "",
+            "price": 600000,
+            "like": "false"
+        },
+        {
+            "id": 7,
+            "name": "Tomioka",
+            "source": "",
+            "price": 600000,
+            "like": "false"
+        },
+        {
+            "id": 8,
+            "name": "Tomioka",
+            "source": "",
+            "price": 600000,
+            "like": "false"
+        }
+    ],
+    "user":[
+        {
+        "username": "'tuannd'",
+        "password": "'12345678'"
+        },
+        {
+        
+        "username": "'admin'",
+        "password": "'123'"
+        
+        }
+    ]
+}
